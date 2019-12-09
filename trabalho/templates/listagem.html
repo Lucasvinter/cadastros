@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="mb-2"><h3>Listagem de Clientes</h3></div>
+<!-- Barras de pesquisa (nome ou ID) -->
+<div class="row mb-3">
+<form action="/buscar_nome" method="POST" class="col">
+    <label class="text-light" for="buscaNome"><strong>Filtrar por Nome :</strong></label>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="buscaNome" id="buscaNome" placeholder="Digite o Primeiro nome">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">&#128269;</button>
+        </div>
+    </div>
+</form>
+<form action="/buscar_id" method="POST" class="col">
+    <label class="text-light" for="buscaID"><strong>Filtrar por ID :</strong></label>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="buscaID" id="buscaID" placeholder="Digite o ID">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">&#128269;</button>
+        </div>
+    </div>
+</form>
+</div>
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th scope="col">  #</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Sobrenome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Del.</th>
+            <th scope="col">Ed.</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for linha in cliente %}
+            <tr>
+                <th>{{ linha['id'] }}</th>
+                <th>{{ linha['nome'] }}</th>
+                <th>{{ linha['sobrenome'] }}</th>
+                <th>{{ linha['cpf'] }}</th>
+                <td>
+                <form method="POST" action="/excluir">
+                    <input name="excluir" id="excluir" value="{{ linha['id'] }}" type="hidden">
+                    <a href="/excluir"><button type="submit" class="btn btn-danger"> X </button></a>
+                </form>
+                </td>
+                <td>
+                <form method="POST" action="/alterar">
+                    <input name="editar" id="editar" value="{{ linha['id'] }}" type="hidden">
+                    <a href="/editar"><button type="submit" class="btn btn-primary">Editar</button></a>
+                </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <thead>
+        <tr>
+            <th scope="col">  #</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Sobrenome</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Del.</th>
+            <th scope="col">Ed.</th>
+        </tr>
+    </thead>
+</table>
+
+{% endblock %}
