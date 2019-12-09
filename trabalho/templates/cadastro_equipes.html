@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="mb-2"><h3>Cadastro de Equipes</h3></div>
+<form action="/salvar" method="POST">
+    <div class="row mb-3">
+        <div class="col">
+            <label class="text-light" for="id">ID:</label>
+            <input type="text" id="id" class="form-control" name="id" disabled placeholder="ID gerado automaticamente pelo sistema">
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label class="text-light" for="nome_equipe">Nome Equipe:</label>
+            <input type="text" id="nome_equipe" class="form-control" name="nome_equipe" placeholder="Primeiro nome_equipe" required>
+        </div>
+        <div class="col">            
+            <label class="text-light" for="linguagens">Linguagem:</label>
+            <input type="text" id="linguagens" class="form-control" name="linguagens" placeholder="Segundo nome" required>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label class="text-light" for="integrante">Integrante:</label>
+            <input type="text" id="integrante" class="form-control" name="integrante" placeholder="Primeiro integrante" required>
+        </div>
+        <div class="col">            
+            <label class="text-light" for="lider">Lider:</label>
+            <input type="text" id="lider" class="form-control" name="lider" placeholder="Segundo nome" required>
+        </div>
+    </div>
+    <div class="row text-center">
+        <button type="submit" class="btn btn-success col-2 mt-2">Cadastrar Equipe</button>
+    </div>
+</form>
+
+{% endblock %}

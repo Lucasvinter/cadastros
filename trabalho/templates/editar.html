@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="mb-2"><h3>Editar Clientes</h3></div>
+<div class="mb-2"><h3>Editar Funcionarios</h3></div>
 <form action="/salvar" method="POST">
     {% for linha in cliente %}
         <div class="row mb-3">
@@ -28,14 +28,23 @@
                 </div>
             </div>
             <div class="col">
-                <div class="row">
-                    <div class="col mt-4">
-                        <button type="submit" class="btn btn-success mt-2">Salvar</button>
-                    </div>
-                    <div class="col mt-4">
-                        <a href="/listagem"><button class="btn btn-primary mt-2">Voltar</button></a>
-                    </div>
-                </div>
+                <label class="text-light" for="cargo">Cargo:</label>
+                <input type="text" id="cargo" class="form-control" name="cargo" value="{{ linha['cargo'] }}" disabled placeholder="Preencha o cargo do funcionario">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label class="text-light" for="salario">Salario:</label>
+                <input type="text" id="salario" class="form-control" name="salario" value="{{ linha['salario'] }}" placeholder="Primeiro salario" required>
+            </div>
+            <div class="col">            
+                <label class="text-light" for="carga_horaria">Carga Horaria:</label>
+                <input type="text" id="carga_horaria" class="form-control" name="carga_horaria" value="{{ linha['carga_horaria'] }}" placeholder="Segundo nome" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col mt-4">
+                <button type="submit" class="btn btn-success mt-2">Enviar</button>
             </div>
         </div>
     {% endfor %}
