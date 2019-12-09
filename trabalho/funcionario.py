@@ -1,7 +1,7 @@
 from pessoa import Pessoa
 
 class Funcionario(Pessoa):
-    def __init__(self, salario, cargo, carga_horaria=None):
+    def __init__(self, salario, cargo, carga_horaria):
         self.salario = salario
         self.cargo = cargo
         self.carga_horaria = carga_horaria

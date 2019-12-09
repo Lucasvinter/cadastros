@@ -1,7 +1,8 @@
 from flask import Flask, render_template, redirect, request, url_for
-from cliente import Cliente
+from funcionario import Funcionario
 from conexao import conn, cursor
 from pessoa import *
+import funcoesbd
 
 app = Flask(__name__)
 nome_template = 'HBSIS'
@@ -25,6 +26,10 @@ def salvar():
     sobrenome = request.form['sobrenome']
     cpf = request.form['cpf']
     Pessoa(nome, sobrenome, cpf)
+    cargo = request.form['cargo']
+    salario = request.form['salario']
+    carga_horaria = request.form['carga_horaria']
+    Funcionario(salario, cargo, carga_horaria)
     self.cadastrar(nome, sobrenome, cpf)
     return redirect('/listagem')
 
@@ -64,7 +69,5 @@ def buscar_nome():
         self.listar()
         return render_template('listagem.html', nome = nome_template, cliente = self.listar())
 
-
-self = Cliente()
 
 app.run()
