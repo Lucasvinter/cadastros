@@ -7,18 +7,18 @@ def cadastrar(self, nome, sobrenome, cpf, salario, cargo, carga_horaria, data_na
 
 
 
-#--- Método para alterar um funcionario --- Ainda não implementado 
+#--- Método para alterar um funcionario --- 
 def alterar(self, nome, sobrenome, cpf, salario, cargo, carga_horaria, data_nascimento, sexo, lider, id=int):
     cursor.execute("UPDATE funcionarios SET nome = {}, sobrenome = {}, cpf = {}, salario{}, cargo{}, carga_horaria{}, data_nascimento{}, sexo{}, lider{} WHERE id = {}".format(nome, sobrenome, cpf, salario, cargo, carga_horaria, data_nascimento, sexo, lider, id))
     conn.commit()
 
-#--- Método para listar todas as pessoas cadastradas
+#--- Método para listar todos os funcionarios cadastradas
 def listar(self):
     lista = []
     cursor.execute("SELECT * FROM funcionarios")
     conn.commit()
     for linha in cursor.fetchall():
-        people = {'id': linha[0], 'nome': linha[1], 'sobrenome': linha[2], 'cpf': linha[3]}
+        people = {'salario': linha[0], 'id': linha[1], 'cargo': linha[2], 'carga_horaria': linha[3], 'nome': linha[4], 'sobrenome':linha[5], 'data_nascimento':linha[6], 'cpf':[7], 'sexo':[8], 'lider':[9]}
         lista.append(people)
     return lista
 
@@ -26,22 +26,22 @@ def listar(self):
 def deletar(self, id:int):
     cursor.execute("DELETE FROM funcionarios WHERE id = {}".format(id))
 
-#--- Metodo para filtrar uma pessoa pelo 'Id' na lista de pessoas cadastradas
+#--- Metodo para filtrar uma funcionarios pelo 'Id' na lista de funcionarios cadastradas
 def filtro_id(self, id:int):
     lista = []
     cursor.execute("SELECT * FROM funcionarios WHERE id = {}".format(id))
     conn.commit()
     for linha in cursor.fetchall():
-        people = {'id': linha[0], 'nome': linha[1], 'sobrenome': linha[2], 'cpf': linha[3]}
+        people = {'salario': linha[0], 'id': linha[1], 'cargo': linha[2], 'carga_horaria': linha[3], 'nome': linha[4], 'sobrenome':linha[5], 'data_nascimento':linha[6], 'cpf':[7], 'sexo':[8], 'lider':[9]}
         lista.append(people)
     return lista
     
-#--- Método para filtrar pessoa por 'nome' na lista de pessoas cadastradas
+#--- Método para filtrar funcionario por 'nome' na lista de funcionarios cadastradas
 def filtro_nome(self, nome:str):
     lista = []
     cursor.execute("SELECT * FROM funcionarios WHERE nome = '{}'".format(nome))
     conn.commit()
     for linha in cursor.fetchall():
-        people = {'id': linha[0], 'nome': linha[1], 'sobrenome': linha[2], 'cpf': linha[3]}
+        people = {'salario': linha[0], 'id': linha[1], 'cargo': linha[2], 'carga_horaria': linha[3], 'nome': linha[4], 'sobrenome':linha[5], 'data_nascimento':linha[6], 'cpf':[7], 'sexo':[8], 'lider':[9]}
         lista.append(people)
     return lista
