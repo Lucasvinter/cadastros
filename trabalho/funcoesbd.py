@@ -1,12 +1,14 @@
 from conexao import conn, cursor
 
- #--- Método para cadastrar uma pessoa
-def cadastrar(self, nome, sobrenome, cpf):
-    cursor.execute("INSERT INTO funcionarios VALUES(DEFAULT, '{}', '{}', '{}')".format(nome, sobrenome, cpf))
+ #--- Método para cadastrar um funcionario
+def cadastrar_pessoa(self, nome, sobrenome, cpf, salario, cargo, carga_horaria, data_nascimento, sexo, lider):
+    cursor.execute("INSERT INTO pessoas VALUES('{}', DEFAULT, '{}', '{}','{}', '{}', '{}', '{}', '{}', '{}')".format(salario, cargo, carga_horaria, nome, sobrenome, data_nascimento, cpf, sexo, lider))
     conn.commit()
 
+
+
 #--- Método para alterar uma pessoa --- Ainda não implementado 
-def alterar(self, nome, sobrenome, cpf, id=int):
+def alterar(self, nome, sobrenome, cpf, salario, cargo, carga_horaria, data_nascimento, sexo, lider, id=int):
     cursor.execute("UPDATE funcionarios SET nome = {}, sobrenome = {}, cpf = {} WHERE id = {}".format(nome, sobrenome, cpf, id))
     conn.commit()
 
