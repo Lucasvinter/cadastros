@@ -30,6 +30,10 @@
             <th scope="col">Nome</th>
             <th scope="col">Sobrenome</th>
             <th scope="col">CPF</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Salario</th>
+            <th scope="col">Carga Horária</th>
             <th scope="col">Del.</th>
             <th scope="col">Ed.</th>
         </tr>
@@ -41,6 +45,10 @@
                 <th>{{ linha['nome'] }}</th>
                 <th>{{ linha['sobrenome'] }}</th>
                 <th>{{ linha['cpf'] }}</th>
+                <th>{{ linha['sexo'] }}</th>
+                <th>{{ linha['cargo'] }}</th>
+                <th>{{ linha['salario'] }}</th>
+                <th>{{ linha['carga_horaria'] }}</th>
                 <td>
                 <form method="POST" action="/excluir">
                     <input name="excluir" id="excluir" value="{{ linha['id'] }}" type="hidden">
@@ -62,6 +70,10 @@
             <th scope="col">Nome</th>
             <th scope="col">Sobrenome</th>
             <th scope="col">CPF</th>
+            <th scope="col">Sexo</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Salario</th>
+            <th scope="col">Carga Horária</th>
             <th scope="col">Del.</th>
             <th scope="col">Ed.</th>
         </tr>
