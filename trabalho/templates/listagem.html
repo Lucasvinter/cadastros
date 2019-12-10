@@ -52,13 +52,13 @@
                 <th>{{ linha['salario'] }}</th>
                 <th>{{ linha['carga_horaria'] }}</th>
                 <td>
-                <form method="POST" action="/excluir">
+                <form action="/excluir" method="POST">
                     <input name="excluir" id="excluir" value="{{ linha['id'] }}" type="hidden">
                     <button type="submit" class="btn btn-danger"> X </button>
                 </form>
                 </td>
                 <td>
-                <form method="POST" action="/editar">
+                <form action="/editar" method="POST">
                     <input name="editar" id="editar" value="{{ linha['id'] }}" type="hidden">
                     <button type="submit" class="btn btn-primary">Editar</button>
                 </form>

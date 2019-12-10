@@ -23,7 +23,6 @@ def listagem():
 
 @app.route('/salvar', methods=['POST'])
 def salvar():
-    id = request.form['id_func']
     nome = request.form['nome']
     sobrenome = request.form['sobrenome']
     cpf = request.form['cpf']
@@ -32,12 +31,10 @@ def salvar():
     cargo = request.form['cargo']
     salario = request.form['salario']
     carga_horaria = request.form['carga_horaria']
-    fk_equipes = request.form['fk_equipes']
-    # Pessoa(nome, sobrenome, cpf, data_nascimento, sexo)
-    # Funcionario(cargo, salario, carga_horaria)
     cadastra = Funcao()
-    cadastra.cadastrar(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, fk_equipes)
+    cadastra.cadastrar(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria)
     return redirect('/listagem')
+
 
 @app.route('/update', methods=['POST'])
 def update():
@@ -49,7 +46,7 @@ def update():
     cargo = request.form['cargo']
     salario = request.form['salario']
     carga_horaria = request.form['carga_horaria']
-    id = request.form['id_func']
+    id = int(request.form['id'])
     altera = Funcao()
     altera.alterar(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id)
     return redirect('/listagem')
@@ -69,7 +66,7 @@ def editar():
     for linha in cursor.fetchall():
         person = {'id': linha[0], 'nome': linha[1], 'sobrenome': linha[2], 'cpf': linha[3], 'data_nascimento': linha[4], 'sexo': linha[5], 'cargo': linha[6], 'salario': linha[7], 'carga_horaria': linha[8]}
         lista.append(person)
-    return render_template('editar.html', nome = nome_template, empregado = lista)
+    return render_template('editar_funcionario.html', nome = nome_template, empregado = lista)
 
 @app.route('/buscar_id', methods=['POST'])
 def buscar_id():

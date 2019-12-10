@@ -2,14 +2,14 @@ from conexao import conn, cursor
 
 class Funcao:
     #--- Método para cadastrar um funcionario
-    def cadastrar(self, nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, fk_equipes):
-        cursor.execute("INSERT INTO funcionarios VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, fk_equipes))
+    def cadastrar(self, nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria):
+        cursor.execute("INSERT INTO funcionarios VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria))
         conn.commit()
     
     
     #--- Método para alterar um funcionario --- 
-    def alterar(self, nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id):
-        cursor.execute("UPDATE funcionarios SET nome = '{}', sobrenome = '{}', cpf = '{}', data_nascimento = '{}', sexo = '{}', cargo = '{}', salario = '{}', carga_horaria = '{}' WHERE id = '{}'".format(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id))
+    def alterar(self, nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id:int):
+        cursor.execute("UPDATE funcionarios SET nome = '{}', sobrenome = '{}', cpf = '{}', data_nascimento = '{}', sexo = '{}', cargo = '{}', salario = '{}', carga_horaria = '{}' WHERE id = {}".format(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id))
         conn.commit()
     
     
