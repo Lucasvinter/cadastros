@@ -32,8 +32,13 @@ def salvar_func():
     salario = request.form['salario']
     carga_horaria = request.form['carga_horaria']
     cadastra = Funcao()
+<<<<<<< HEAD
     cadastra.cadastrar_func(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria)
     return redirect('/listagem_func')
+=======
+    cadastra.cadastrar(Funcionario(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria))
+    return redirect('/listagem')
+>>>>>>> 94643d15dc7879b04216dae48a33de1929b568d9
 
 
 @app.route('/update_func', methods=['POST'])
