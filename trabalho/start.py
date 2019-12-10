@@ -32,13 +32,8 @@ def salvar_func():
     salario = request.form['salario']
     carga_horaria = request.form['carga_horaria']
     cadastra = Funcao()
-<<<<<<< HEAD
     cadastra.cadastrar_func(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria)
     return redirect('/listagem_func')
-=======
-    cadastra.cadastrar(Funcionario(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria))
-    return redirect('/listagem')
->>>>>>> 94643d15dc7879b04216dae48a33de1929b568d9
 
 
 @app.route('/update_func', methods=['POST'])
@@ -197,11 +192,11 @@ def salvar_ling():
 
 @app.route('/update_ling', methods=['POST'])
 def update_ling():
-    nome = request.form['nome']
+    nome_ling = request.form['nome']
     descricao = request.form['descricao']
     id = int(request.form['id'])
     altera = Funcao()
-    altera.alterar_ling(nome, descricao, id)
+    altera.alterar_ling(nome_ling, descricao, id)
     return redirect('/listagem_ling')
 
 @app.route('/excluir_ling', methods=['POST'])

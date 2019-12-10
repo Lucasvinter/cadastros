@@ -12,13 +12,14 @@
         <div class="row mb-3">
             <div class="col">            
                 <label class="text-light" for="nome">Linguagem:</label>
-                <input type="text" id="nome" class="form-control" value="{{ linha['nome'] }}" name="nome" placeholder="Segundo nome" required>
+                <input type="text" id="nome" class="form-control" value="{{ linha['nome'] }}" name="nome" placeholder="Nome da Linguagem" required>
             </div>
             <div class="col">            
                 <label class="text-light" for="descricao">Descricao:</label>
-                <input type="text" id="descricao" class="form-control" value="{{ linha['descricao'] }}" name="descricao" placeholder="Segundo nome" required>
+                <input type="text" id="descricao" class="form-control" value="{{ linha['descricao'] }}" name="descricao" placeholder="Descricao da Linguagem" required>
             </div>
         </div>
+        <input type="hidden" name="id" value="{{ linha['id'] }}">
         <div class="row text-center">
             <button type="submit" class="btn btn-success col-2 mt-2">Cadastrar Equipe</button>
         </div>

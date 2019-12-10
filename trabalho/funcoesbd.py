@@ -3,14 +3,11 @@ from funcionario import Funcionario
 
 class Funcao:
     #--- Método para cadastrar um funcionario
-<<<<<<< HEAD
     def cadastrar_func(self, nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria):
         cursor.execute("INSERT INTO funcionarios VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria))
-=======
-    def cadastrar(self, funcionario:Funcionario):
-        cursor.execute("INSERT INTO funcionarios VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(funcionario.get_nome(), funcionario.get_sobrenome(), funcionario.get_cpf(), funcionario.get_data_nascimento(), funcionario.get_sexo(), funcionario.get_cargo(), funcionario.get_salario(), funcionario.get_carga_horaria()))
->>>>>>> 94643d15dc7879b04216dae48a33de1929b568d9
-        conn.commit()
+    # def cadastrar_func(self, funcionario:Funcionario):
+    #     cursor.execute("INSERT INTO funcionarios VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(funcionario.get_nome(), funcionario.get_sobrenome(), funcionario.get_cpf(), funcionario.get_data_nascimento(), funcionario.get_sexo(), funcionario.get_cargo(), funcionario.get_salario(), funcionario.get_carga_horaria()))
+    #     conn.commit()
     
     
     #--- Método para alterar um funcionario --- 
