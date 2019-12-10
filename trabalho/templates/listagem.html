@@ -30,21 +30,23 @@
             <th scope="col">Nome</th>
             <th scope="col">Sobrenome</th>
             <th scope="col">CPF</th>
+            <th scope="col">Data Nasc</th>
             <th scope="col">Sexo</th>
             <th scope="col">Cargo</th>
-            <th scope="col">Salario</th>
+            <th scope="col">Salário</th>
             <th scope="col">Carga Horária</th>
             <th scope="col">Del.</th>
             <th scope="col">Ed.</th>
         </tr>
     </thead>
     <tbody>
-        {% for linha in cliente %}
+        {% for linha in empregado %}
             <tr>
                 <th>{{ linha['id'] }}</th>
                 <th>{{ linha['nome'] }}</th>
                 <th>{{ linha['sobrenome'] }}</th>
                 <th>{{ linha['cpf'] }}</th>
+                <th>{{ linha['data_nascimento'] }}</th>
                 <th>{{ linha['sexo'] }}</th>
                 <th>{{ linha['cargo'] }}</th>
                 <th>{{ linha['salario'] }}</th>
@@ -52,13 +54,13 @@
                 <td>
                 <form method="POST" action="/excluir">
                     <input name="excluir" id="excluir" value="{{ linha['id'] }}" type="hidden">
-                    <a href="/excluir"><button type="submit" class="btn btn-danger"> X </button></a>
+                    <button type="submit" class="btn btn-danger"> X </button>
                 </form>
                 </td>
                 <td>
-                <form method="POST" action="/alterar">
+                <form method="POST" action="/editar">
                     <input name="editar" id="editar" value="{{ linha['id'] }}" type="hidden">
-                    <a href="/editar"><button type="submit" class="btn btn-primary">Editar</button></a>
+                    <button type="submit" class="btn btn-primary">Editar</button>
                 </form>
                 </td>
             </tr>
@@ -70,9 +72,10 @@
             <th scope="col">Nome</th>
             <th scope="col">Sobrenome</th>
             <th scope="col">CPF</th>
+            <th scope="col">Data Nasc</th>
             <th scope="col">Sexo</th>
             <th scope="col">Cargo</th>
-            <th scope="col">Salario</th>
+            <th scope="col">Salário</th>
             <th scope="col">Carga Horária</th>
             <th scope="col">Del.</th>
             <th scope="col">Ed.</th>

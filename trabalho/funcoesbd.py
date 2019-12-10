@@ -2,14 +2,14 @@ from conexao import conn, cursor
 
 class Funcao:
     #--- Método para cadastrar um funcionario
-    def cadastrar(self, nome, sobrenome, cpf:int, salario:int, cargo, carga_horaria, data_nascimento, sexo):
-        cursor.execute("INSERT INTO funcionarios VALUES(DEFAULT, '{}', '{}','{}', '{}', '{}', '{}', '{}', '{}')".format(salario, cargo, carga_horaria, nome, sobrenome, data_nascimento, cpf, sexo))
+    def cadastrar(self, nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, fk_equipes):
+        cursor.execute("INSERT INTO funcionarios VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, fk_equipes))
         conn.commit()
     
     
     #--- Método para alterar um funcionario --- 
-    def alterar(self, nome, sobrenome, cpf:int, salario:int, cargo, carga_horaria:int, data_nascimento:int, sexo, id=int):
-        cursor.execute("UPDATE funcionarios SET nome = '{}', sobrenome = '{}', cpf = {}, salario = {}, cargo = '{}', carga_horaria = {}, data_nascimento = {}, sexo = '{}' WHERE id = {}".format(nome, sobrenome, cpf, salario, cargo, carga_horaria, data_nascimento, sexo, id))
+    def alterar(self, nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id):
+        cursor.execute("UPDATE funcionarios SET nome = '{}', sobrenome = '{}', cpf = '{}', data_nascimento = '{}', sexo = '{}', cargo = '{}', salario = '{}', carga_horaria = '{}' WHERE id = '{}'".format(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id))
         conn.commit()
     
     
@@ -19,23 +19,23 @@ class Funcao:
         cursor.execute("SELECT * FROM funcionarios")
         conn.commit()
         for linha in cursor.fetchall():
-            people = {'salario': linha[0], 'id': linha[1], 'cargo': linha[2], 'carga_horaria': linha[3], 'nome': linha[4], 'sobrenome':linha[5], 'data_nascimento':linha[6], 'cpf':[7], 'sexo':[8]}
+            people = {'id': linha[0], 'nome': linha[1], 'sobrenome': linha[2], 'cpf': linha[3], 'data_nascimento': linha[4], 'sexo': linha[5], 'cargo': linha[6], 'salario': linha[7], 'carga_horaria': linha[8]}
             lista.append(people)
         return lista
     
     
     #--- Metodo para excluir uma linha basenado-se no id recebido por parâmetro
-    def deletar(self, id:int):
+    def deletar(self, id):
         cursor.execute("DELETE FROM funcionarios WHERE id = {}".format(id))
     
     
     #--- Metodo para filtrar uma funcionarios pelo 'Id' na lista de funcionarios cadastradas
-    def filtro_id(self, id:int):
+    def filtro_id(self, id):
         lista = []
         cursor.execute("SELECT * FROM funcionarios WHERE id = {}".format(id))
         conn.commit()
         for linha in cursor.fetchall():
-            people = {'salario': linha[0], 'id': linha[1], 'cargo': linha[2], 'carga_horaria': linha[3], 'nome': linha[4], 'sobrenome':linha[5], 'data_nascimento':linha[6], 'cpf':[7], 'sexo':[8]}
+            people = people = {'id': linha[0], 'nome': linha[1], 'sobrenome': linha[2], 'cpf': linha[3], 'data_nascimento': linha[4], 'sexo': linha[5], 'cargo': linha[6], 'salario': linha[7], 'carga_horaria': linha[8]}
             lista.append(people)
         return lista
     
@@ -46,6 +46,6 @@ class Funcao:
         cursor.execute("SELECT * FROM funcionarios WHERE nome = '{}'".format(nome))
         conn.commit()
         for linha in cursor.fetchall():
-            people = {'salario': linha[0], 'id': linha[1], 'cargo': linha[2], 'carga_horaria': linha[3], 'nome': linha[4], 'sobrenome':linha[5], 'data_nascimento':linha[6], 'cpf':[7], 'sexo':[8]}
+            people = people = {'id': linha[0], 'nome': linha[1], 'sobrenome': linha[2], 'cpf': linha[3], 'data_nascimento': linha[4], 'sexo': linha[5], 'cargo': linha[6], 'salario': linha[7], 'carga_horaria': linha[8]}
             lista.append(people)
         return lista
