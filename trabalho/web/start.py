@@ -1,10 +1,16 @@
+import sys
+
+sys.path.append('C:/Users/vinte/OneDrive/Documentos/trabalhospython/cadastros/trabalho/')
+
 from flask import Flask, render_template, redirect, request, url_for
-from conexao import conn, cursor
-from funcionario import Funcionario
-from pessoa import Pessoa
-from funcoesbd import *
-from linguagem import Linguagem
-from equipes import Equipes
+from dao.conexao import Conexao
+from dao.funcionariodao import FuncionarioDao
+from dao.linguagemdao import LinguagemDao
+from dao.equipesdao import EquipesDao
+from model.equipes import Equipes
+from model.funcionario import Funcionario
+from model.linguagem import Linguagem
+from model.pessoa import Pessoa
 
 app = Flask(__name__)
 nome_template = 'HBSIS'
@@ -19,7 +25,7 @@ def formulario_func():
 
 @app.route('/listagem_func')
 def listagem_func():
-    lista = Funcao()
+    lista = FuncionarioDao()
     lista.listar_func()
     return render_template('listagem_func.html', nome = nome_template, empregado = lista.listar_func())
 
@@ -33,7 +39,7 @@ def salvar_func():
     cargo = request.form['cargo']
     salario = request.form['salario']
     carga_horaria = request.form['carga_horaria']
-    cadastra = Funcao()
+    cadastra = FuncionarioDao()
     cadastra.cadastrar_func(Funcionario(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria))
     return redirect('/listagem_func')
 
@@ -49,31 +55,27 @@ def update_func():
     salario = request.form['salario']
     carga_horaria = request.form['carga_horaria']
     id = int(request.form['id'])
-    altera = Funcao()
+    altera = FuncionarioDao()
     altera.alterar_func(Funcionario(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id))
     return redirect('/listagem_func')
 
 @app.route('/excluir_func', methods=['POST'])
 def excluir_func():
     id = request.form['excluir']
-    deleta = Funcao()
+    deleta = FuncionarioDao()
     deleta.deletar_func(id)
     return redirect('/listagem_func')    
 
 @app.route('/editar_func', methods=['POST'])
-def editar_func():
-    lista = []
+def editar_func():  
     id = request.form['editar']
-    cursor.execute("SELECT * FROM funcionarios WHERE id = {}".format(id))
-    for linha in cursor.fetchall():
-        person = {'id': linha[0], 'nome': linha[1], 'sobrenome': linha[2], 'cpf': linha[3], 'data_nascimento': linha[4], 'sexo': linha[5], 'cargo': linha[6], 'salario': linha[7], 'carga_horaria': linha[8]}
-        lista.append(person)
-    return render_template('editar_funcionario.html', nome = nome_template, empregado = lista)
+    edita = FuncionarioDao()
+    return render_template('editar_funcionario.html', nome = nome_template, empregado = edita.editar_func(id))
 
 @app.route('/buscar_id_func', methods=['POST'])
 def buscar_id_func():
     id = request.form['buscaID']
-    buscaid = Funcao()
+    buscaid = FuncionarioDao()
     if id != '':
         buscaid.filtro_id_func(id)
         return render_template('listagem_func.html', nome = nome_template, empregado = buscaid.filtro_id_func(id))
@@ -84,7 +86,7 @@ def buscar_id_func():
 @app.route('/buscar_nome_func', methods=['POST'])
 def buscar_nome_func():
     nome = str(request.form['buscaNome'])
-    buscanome = Funcao()
+    buscanome = FuncionarioDao()
     if nome != '':
         buscanome.filtro_nome_func(nome)
         return render_template('listagem_func.html', nome = nome_template, empregado = buscanome.filtro_nome_func(nome))
@@ -99,7 +101,7 @@ def formulario_equipe():
 
 @app.route('/listagem_equipe')
 def listagem_equipe():
-    lista = Funcao()
+    lista = EquipesDao()
     lista.listar_equipe()
     return render_template('listagem_equipe.html', nome = nome_template, empregado = lista.listar_equipe())
 
@@ -113,7 +115,7 @@ def salvar_equipe():
     integrante2 = request.form['integrante2']
     integrante3 = request.form['integrante3']
     integrante4 = request.form['integrante4']
-    cadastra = Funcao()
+    cadastra = EquipesDao()
     cadastra.cadastrar_equipe(Equipes(nome, lingua, lider, projeto, integrante1, integrante2, integrante3, integrante4))
     return redirect('/listagem_equipe')
 
@@ -129,31 +131,28 @@ def update_equipe():
     integrante3 = request.form['integrante3']
     integrante4 = request.form['integrante4']
     id = int(request.form['id'])
-    altera = Funcao()
+    altera = EquipesDao()
     altera.alterar_equipe(Equipes(nome, projeto, linguagem, lider, integrante1, integrante2, integrante3, integrante4, id))
     return redirect('/listagem_equipe')
 
 @app.route('/excluir_equipe', methods=['POST'])
 def excluir_equipe():
     id = request.form['excluir']
-    deleta = Funcao()
+    deleta = EquipesDao()
     deleta.deletar_equipe(id)
     return redirect('/listagem_equipe')    
 
 @app.route('/editar_equipe', methods=['POST'])
 def editar_equipe():
-    lista = []
+    
     id = request.form['editar']
-    cursor.execute("SELECT * FROM equipes WHERE id = {}".format(id))
-    for linha in cursor.fetchall():
-        person = {'id': linha[0], 'nome': linha[1], 'projeto': linha[2], 'integrante1': linha[3], 'integrante2': linha[4], 'integrante3': linha[5], 'integrante4': linha[6]}
-        lista.append(person)
-    return render_template('editar_equipe.html', nome = nome_template, empregado = lista)
+    edita = EquipesDao()
+    return render_template('editar_equipe.html', nome = nome_template, empregado = edita.editar_equipe(id))
 
 @app.route('/buscar_id_equipe', methods=['POST'])
 def buscar_id_equipe():
     id = request.form['buscaID']
-    buscaid = Funcao()
+    buscaid = EquipesDao()
     if id != '':
         buscaid.filtro_id_ling(id)
         return render_template('listagem_equipe.html', nome = nome_template, empregado = buscaid.filtro_id_equipe(id))
@@ -164,7 +163,7 @@ def buscar_id_equipe():
 @app.route('/buscar_nome_equipe', methods=['POST'])
 def buscar_nome_equipe():
     nome = str(request.form['buscaNome'])
-    buscanome = Funcao()
+    buscanome = EquipesDao()
     if nome != '':
         buscanome.filtro_nome_equipe(nome)
         return render_template('listagem_equipe.html', nome = nome_template, empregado = buscanome.filtro_nome_equipe(nome))
@@ -179,7 +178,7 @@ def formulario_ling():
 
 @app.route('/listagem_ling')
 def listagem_ling():
-    lista = Funcao()
+    lista = LinguagemDao()
     lista.listar_ling()
     return render_template('listagem_linguagem.html', nome = nome_template, empregado = lista.listar_ling())
 
@@ -187,7 +186,7 @@ def listagem_ling():
 def salvar_ling():
     nome = request.form['nome']
     desc = request.form['descricao']
-    cadastra = Funcao()
+    cadastra = LinguagemDao()
     cadastra.cadastrar_ling(Linguagem(nome, desc))
     return redirect('/listagem_ling')
 
@@ -197,31 +196,27 @@ def update_ling():
     nome_ling = request.form['nome']
     descricao = request.form['descricao']
     id = int(request.form['id'])
-    altera = Funcao()
+    altera = LinguagemDao()
     altera.alterar_ling(Linguagem(nome_ling, descricao, id))
     return redirect('/listagem_ling')
 
 @app.route('/excluir_ling', methods=['POST'])
 def excluir_ling():
     id = request.form['excluir']
-    deleta = Funcao()
+    deleta = LinguagemDao()
     deleta.deletar_ling(id)
     return redirect('/listagem_ling')    
 
 @app.route('/editar_ling', methods=['POST'])
 def editar_ling():
-    lista = []
     id = request.form['editar']
-    cursor.execute("SELECT * FROM linguagem WHERE id = {}".format(id))
-    for linha in cursor.fetchall():
-        person = {'id': linha[0], 'nome': linha[1], 'descricao': linha[2]}
-        lista.append(person)
-    return render_template('editar_linguagem.html', nome = nome_template, empregado = lista)
+    edita = LinguagemDao()
+    return render_template('editar_linguagem.html', nome = nome_template, empregado = edita.editar_ling(id))
 
 @app.route('/buscar_id_ling', methods=['POST'])
 def buscar_id_ling():
     id = request.form['buscaID']
-    buscaid = Funcao()
+    buscaid = LinguagemDao()
     if id != '':
         buscaid.filtro_id_ling(id)
         return render_template('listagem_linguagem.html', nome = nome_template, empregado = buscaid.filtro_id_ling(id))
@@ -232,7 +227,7 @@ def buscar_id_ling():
 @app.route('/buscar_nome_ling', methods=['POST'])
 def buscar_nome_ling():
     nome = str(request.form['buscaNome'])
-    buscanome = Funcao()
+    buscanome = LinguagemDao()
     if nome != '':
         buscanome.filtro_nome_ling(nome)
         return render_template('listagem_linguagem.html', nome = nome_template, empregado = buscanome.filtro_nome_ling(nome))
