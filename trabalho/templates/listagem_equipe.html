@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="mb-2"><h3>Listagem de Clientes</h3></div>
+<!-- Barras de pesquisa (nome ou ID) -->
+<div class="row mb-3">
+<form action="/buscar_nome_equipe" method="POST" class="col">
+    <label class="text-light" for="buscaNome"><strong>Filtrar por Nome :</strong></label>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="buscaNome" id="buscaNome" placeholder="Digite o Primeiro nome">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">&#128269;</button>
+        </div>
+    </div>
+</form>
+<form action="/buscar_id_equipe" method="POST" class="col">
+    <label class="text-light" for="buscaID"><strong>Filtrar por ID :</strong></label>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" name="buscaID" id="buscaID" placeholder="Digite o ID">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">&#128269;</button>
+        </div>
+    </div>
+</form>
+</div>
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th scope="col">  #</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Lider</th>
+            <th scope="col">Integrante1</th>
+            <th scope="col">Integrante2</th>
+            <th scope="col">Integrante3</th>
+            <th scope="col">Integrante4</th>
+            <th scope="col">Del.</th>
+            <th scope="col">Ed.</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for linha in empregado %}
+            <tr>
+                <th>{{ linha['id'] }}</th>
+                <th>{{ linha['nome'] }}</th>
+                <th>{{ linha['lider'] }}</th>
+                <th>{{ linha['integrante1'] }}</th>
+                <th>{{ linha['integrante2'] }}</th>
+                <th>{{ linha['integrante3'] }}</th>
+                <th>{{ linha['integrante4'] }}</th>
+                
+                <td>
+                <form action="/excluir_equipe" method="POST">
+                    <input name="excluir" id="excluir" value="{{ linha['id'] }}" type="hidden">
+                    <button type="submit" class="btn btn-danger"> X </button>
+                </form>
+                </td>
+                <td>
+                <form action="/editar_equipe" method="POST">
+                    <input name="editar" id="editar" value="{{ linha['id'] }}" type="hidden">
+                    <button type="submit" class="btn btn-primary">Editar</button>
+                </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <thead>
+        <tr>
+            <th scope="col">  #</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Lider</th>
+            <th scope="col">Integrante1</th>
+            <th scope="col">Integrante2</th>
+            <th scope="col">Integrante3</th>
+            <th scope="col">Integrante4</th>
+            <th scope="col">Del.</th>
+            <th scope="col">Ed.</th>
+        </tr>
+    </thead>
+</table>
+
+{% endblock %}

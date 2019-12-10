@@ -3,7 +3,7 @@
 <div class="mb-2"><h3>Listagem de Clientes</h3></div>
 <!-- Barras de pesquisa (nome ou ID) -->
 <div class="row mb-3">
-<form action="/buscar_nome" method="POST" class="col">
+<form action="/buscar_nome_func" method="POST" class="col">
     <label class="text-light" for="buscaNome"><strong>Filtrar por Nome :</strong></label>
     <div class="input-group mb-3">
         <input type="text" class="form-control" name="buscaNome" id="buscaNome" placeholder="Digite o Primeiro nome">
@@ -12,7 +12,7 @@
         </div>
     </div>
 </form>
-<form action="/buscar_id" method="POST" class="col">
+<form action="/buscar_id_func" method="POST" class="col">
     <label class="text-light" for="buscaID"><strong>Filtrar por ID :</strong></label>
     <div class="input-group mb-3">
         <input type="text" class="form-control" name="buscaID" id="buscaID" placeholder="Digite o ID">
@@ -52,13 +52,13 @@
                 <th>{{ linha['salario'] }}</th>
                 <th>{{ linha['carga_horaria'] }}</th>
                 <td>
-                <form action="/excluir" method="POST">
+                <form action="/excluir_func" method="POST">
                     <input name="excluir" id="excluir" value="{{ linha['id'] }}" type="hidden">
                     <button type="submit" class="btn btn-danger"> X </button>
                 </form>
                 </td>
                 <td>
-                <form action="/editar" method="POST">
+                <form action="/editar_func" method="POST">
                     <input name="editar" id="editar" value="{{ linha['id'] }}" type="hidden">
                     <button type="submit" class="btn btn-primary">Editar</button>
                 </form>

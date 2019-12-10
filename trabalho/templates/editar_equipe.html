@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div class="mb-2"><h3>Cadastro de Equipes</h3></div>
+<form action="/update_equipe" method="POST">
+    {% for linha in empregado %}
+        <div class="row mb-3">
+            <div class="col">
+                <label class="text-light" for="id">ID:</label>
+                <input type="text" id="id" class="form-control" value="{{ linha['id'] }}" name="id" value="{{ linha['id'] }}" disabled placeholder="ID gerado automaticamente pelo sistema">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label class="text-light" for="nome">Nome Equipe:</label>
+                <input type="text" id="nome" class="form-control" value="{{ linha['nome'] }}" name="nome" placeholder="Primeiro nome_equipe" required>
+            </div>
+            <div class="col">            
+                <label class="text-light" for="linguagens">Linguagem:</label>
+                <input type="text" id="linguagens" class="form-control" value="{{ linha['linguagem'] }}" name="linguagens" placeholder="Segundo nome" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">            
+                <label class="text-light" for="projeto">Projeto:</label>
+                <input type="text" id="projeto" class="form-control" value="{{ linha['projeto'] }}" name="projeto" placeholder="Segundo nome" required>
+            </div>
+            <div class="col">            
+                <label class="text-light" for="lider">Lider:</label>
+                <input type="text" id="lider" class="form-control" value="{{ linha['lider'] }}" name="lider" placeholder="Segundo nome" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label class="text-light" for="integrante1">Integrante1:</label>
+                <input type="text" id="integrante1" class="form-control" value="{{ linha['integrante1'] }}" name="integrante1" placeholder="Primeiro integrante" required>
+            </div>
+            <div class="col">
+                <label class="text-light" for="integrante2">Integrante2:</label>
+                <input type="text" id="integrante2" class="form-control" value="{{ linha['integrante2'] }}" name="integrante2" placeholder="Primeiro integrante" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label class="text-light" for="integrante3">Integrante3:</label>
+                <input type="text" id="integrante3" class="form-control" value="{{ linha['integrante3'] }}" name="integrante3" placeholder="Primeiro integrante" required>
+            </div>
+            <div class="col">
+                <label class="text-light" for="integrante4">Integrante4:</label>
+                <input type="text" id="integrante4" class="form-control" value="{{ linha['integrante4'] }}" name="integrante4" placeholder="Primeiro integrante" required>
+            </div>
+        </div>
+        <input type="hidden" name="id" value="{{ linha['id'] }}">
+        <div class="row text-center">
+            <button type="submit" class="btn btn-success col-2 mt-2">Cadastrar Equipe</button>
+        </div>
+    {% endfor %}
+</form>
+
+{% endblock %}
