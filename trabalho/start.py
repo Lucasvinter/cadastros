@@ -3,6 +3,8 @@ from conexao import conn, cursor
 from funcionario import Funcionario
 from pessoa import Pessoa
 from funcoesbd import *
+from linguagem import Linguagem
+from equipes import Equipes
 
 app = Flask(__name__)
 nome_template = 'HBSIS'
@@ -32,7 +34,7 @@ def salvar_func():
     salario = request.form['salario']
     carga_horaria = request.form['carga_horaria']
     cadastra = Funcao()
-    cadastra.cadastrar_func(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria)
+    cadastra.cadastrar_func(Funcionario(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria))
     return redirect('/listagem_func')
 
 
@@ -48,7 +50,7 @@ def update_func():
     carga_horaria = request.form['carga_horaria']
     id = int(request.form['id'])
     altera = Funcao()
-    altera.alterar_func(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id)
+    altera.alterar_func(Funcionario(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id))
     return redirect('/listagem_func')
 
 @app.route('/excluir_func', methods=['POST'])
@@ -112,7 +114,7 @@ def salvar_equipe():
     integrante3 = request.form['integrante3']
     integrante4 = request.form['integrante4']
     cadastra = Funcao()
-    cadastra.cadastrar_equipe(nome, lingua, lider, projeto, integrante1, integrante2, integrante3, integrante4)
+    cadastra.cadastrar_equipe(Equipes(nome, lingua, lider, projeto, integrante1, integrante2, integrante3, integrante4))
     return redirect('/listagem_equipe')
 
 
@@ -128,7 +130,7 @@ def update_equipe():
     integrante4 = request.form['integrante4']
     id = int(request.form['id'])
     altera = Funcao()
-    altera.alterar_equipe(nome, linguagem, lider, projeto, integrante1, integrante2, integrante3, integrante4, id)
+    altera.alterar_equipe(Equipes(nome, projeto, linguagem, lider, integrante1, integrante2, integrante3, integrante4, id))
     return redirect('/listagem_equipe')
 
 @app.route('/excluir_equipe', methods=['POST'])
@@ -186,7 +188,7 @@ def salvar_ling():
     nome = request.form['nome']
     desc = request.form['descricao']
     cadastra = Funcao()
-    cadastra.cadastrar_ling(nome, desc)
+    cadastra.cadastrar_ling(Linguagem(nome, desc))
     return redirect('/listagem_ling')
 
 
@@ -196,7 +198,7 @@ def update_ling():
     descricao = request.form['descricao']
     id = int(request.form['id'])
     altera = Funcao()
-    altera.alterar_ling(nome_ling, descricao, id)
+    altera.alterar_ling(Linguagem(nome_ling, descricao, id))
     return redirect('/listagem_ling')
 
 @app.route('/excluir_ling', methods=['POST'])
