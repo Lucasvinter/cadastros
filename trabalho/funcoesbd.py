@@ -1,9 +1,10 @@
 from conexao import conn, cursor
+from funcionario import Funcionario
 
 class Funcao:
     #--- Método para cadastrar um funcionario
-    def cadastrar(self, nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria):
-        cursor.execute("INSERT INTO funcionarios VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria))
+    def cadastrar(self, funcionario:Funcionario):
+        cursor.execute("INSERT INTO funcionarios VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(funcionario.get_nome(), funcionario.get_sobrenome(), funcionario.get_cpf(), funcionario.get_data_nascimento(), funcionario.get_sexo(), funcionario.get_cargo(), funcionario.get_salario(), funcionario.get_carga_horaria()))
         conn.commit()
     
     

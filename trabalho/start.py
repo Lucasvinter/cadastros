@@ -32,7 +32,7 @@ def salvar():
     salario = request.form['salario']
     carga_horaria = request.form['carga_horaria']
     cadastra = Funcao()
-    cadastra.cadastrar(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria)
+    cadastra.cadastrar(Funcionario(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria))
     return redirect('/listagem')
 
 
