@@ -1,21 +1,22 @@
 from conexao import conn, cursor
 from funcionario import Funcionario
+from linguegem import Linguagem
+from equipes import Equipes
+
+
 
 class Funcao:
     #--- Método para cadastrar um funcionario
-<<<<<<< HEAD
-    def cadastrar_func(self, nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria):
-        cursor.execute("INSERT INTO funcionarios VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria))
-=======
-    def cadastrar(self, funcionario:Funcionario):
+
+    def cadastrar_func(self, funcionario:Funcionario):
         cursor.execute("INSERT INTO funcionarios VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(funcionario.get_nome(), funcionario.get_sobrenome(), funcionario.get_cpf(), funcionario.get_data_nascimento(), funcionario.get_sexo(), funcionario.get_cargo(), funcionario.get_salario(), funcionario.get_carga_horaria()))
->>>>>>> 94643d15dc7879b04216dae48a33de1929b568d9
+
         conn.commit()
     
     
     #--- Método para alterar um funcionario --- 
-    def alterar_func(self, nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id:int):
-        cursor.execute("UPDATE funcionarios SET nome = '{}', sobrenome = '{}', cpf = '{}', data_nascimento = '{}', sexo = '{}', cargo = '{}', salario = '{}', carga_horaria = '{}' WHERE id = {}".format(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id))
+    def alterar_func(self, funcionario:Funcionario):
+        cursor.execute("UPDATE funcionarios SET nome = '{}', sobrenome = '{}', cpf = '{}', data_nascimento = '{}', sexo = '{}', cargo = '{}', salario = '{}', carga_horaria = '{}' WHERE id = {}".format(funcionario.get_nome, funcionario.get_sobrenome, funcionario.get_cpf, funcionario.get_data_nascimento, funcionario.get_sexo, funcionario.get_cargo, funcionario.get_salario, funcionario.get_carga_horaria, funcionario.get_id))
         conn.commit()
     
     
@@ -57,14 +58,14 @@ class Funcao:
         return lista
 
      #--- Método para cadastrar um funcionario
-    def cadastrar_equipe(self, nome, linguagem, lider, projeto, integrante1, integrante2, integrante3, integrante4):
-        cursor.execute("INSERT INTO equipes VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(nome, linguagem, lider, projeto, integrante1, integrante2, integrante3, integrante4))
+    def cadastrar_equipe(self, equipes:Equipes):
+        cursor.execute("INSERT INTO equipes VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(equipes.get_nome, equipes.get_linguagem, equipes.get_lider, equipes.get_projeto, equipes.get_integrante1, equipes.get_integrante2, equipes.get_integrante3, equipes.get_integrante4))
         conn.commit()
     
     
     #--- Método para alterar um funcionario --- 
-    def alterar_equipe(self, nome, linguagem, lider, projeto, integrante1, integrante2, integrante3, integrante4, id):
-        cursor.execute("UPDATE equipes SET nome = '{}', linguagem = '{}', projeto = '{}', lider = '{}', integrante1 = '{}', integrante2 = '{}', integrante3 = '{}', integrante4 = '{}' WHERE id = {}".format(nome, linguagem, lider, projeto, integrante1, integrante2, integrante3, integrante4, id))
+    def alterar_equipe(self, equipes:Equipes):
+        cursor.execute("UPDATE equipes SET nome = '{}', linguagem = '{}', projeto = '{}', lider = '{}', integrante1 = '{}', integrante2 = '{}', integrante3 = '{}', integrante4 = '{}' WHERE id = {}".format(equipes.get_nome, equipes.get_linguagem, equipes.get_lider, equipes.get_projeto, equipes.get_integrante1, equipes.get_integrante2, equipes.get_integrante3, equipes.get_integrante4, equipes.get_id))
         conn.commit()
     
     
@@ -106,14 +107,14 @@ class Funcao:
         return lista
 
      #--- Método para cadastrar um funcionario
-    def cadastrar_ling(self, nome, descricao):
-        cursor.execute("INSERT INTO linguagem VALUES (DEFAULT, '{}', '{}')".format(nome, descricao))
+    def cadastrar_ling(self, linguagem:Linguagem):
+        cursor.execute("INSERT INTO linguagem VALUES (DEFAULT, '{}', '{}')".format(linguagem.get_nome, linguagem.get_descricao))
         conn.commit()
     
     
     #--- Método para alterar um funcionario --- 
-    def alterar_ling(self, nome, descricao, id):
-        cursor.execute("UPDATE linguagem SET nome = '{}', descricao = '{}' WHERE id = {}".format(nome, descricao, id))
+    def alterar_ling(self, linguagem:Linguagem):
+        cursor.execute("UPDATE linguagem SET nome = '{}', descricao = '{}' WHERE id = {}".format(linguagem.get_nome, linguagem.get_descricao, linguagem.get_id))
         conn.commit()
     
     
