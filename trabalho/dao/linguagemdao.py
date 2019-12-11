@@ -28,7 +28,7 @@ class LinguagemDao(Conexao):
     #--- Metodo para excluir uma linha basenado-se no id recebido por parâmetro
     def deletar_ling(self, id):
         self.cursor.execute("DELETE FROM linguagem WHERE id = {}".format(id))
-    
+        self.conn.commit()
     
     #--- Metodo para filtrar uma linguagem pelo 'Id' na lista de linguagem cadastradas
     def filtro_id_ling(self, id):

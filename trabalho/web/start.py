@@ -1,5 +1,5 @@
 import sys
-sys.path.append('C:/Users/55479/Desktop/TrabalhoPronto/cadastros/trabalho/')
+sys.path.append('C:/Users/vinte/OneDrive/Documentos/trabalhospython/cadastros/trabalho/')
 from flask import Flask, render_template, redirect, request, url_for
 from dao.conexao import Conexao
 from dao.funcionariodao import FuncionarioDao

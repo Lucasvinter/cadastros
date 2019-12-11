@@ -28,7 +28,7 @@ class EquipesDao(Conexao):
     #--- Metodo para excluir uma linha basenado-se no id recebido por parâmetro
     def deletar_equipe(self, id):
         self.cursor.execute("DELETE FROM equipes WHERE id = {}".format(id))
-    
+        self.conn.commit()
     
     #--- Metodo para filtrar uma equipes pelo 'Id' na lista de equipes cadastradas
     def filtro_id_equipe(self, id):

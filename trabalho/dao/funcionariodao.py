@@ -27,7 +27,7 @@ class FuncionarioDao(Conexao):
     #--- Metodo para excluir uma linha basenado-se no id recebido por parâmetro
     def deletar_func(self, id):
         self.cursor.execute("DELETE FROM funcionarios WHERE id = {}".format(id))
-        
+        self.conn.commit()
     
     #--- Metodo para filtrar uma funcionarios pelo 'Id' na lista de funcionarios cadastradas
     def filtro_id_func(self, id):
