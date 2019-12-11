@@ -1,6 +1,16 @@
 body {
-    background: transparent url('../background.jpg') no-repeat;
+    background: transparent url('../background.jpg') no-repeat left;
 }
+
 .container{
-    background-image: linear-gradient(to bottom, rgba(19, 83, 112, 0.6), rgba(3, 67, 97, 0.6));
+    background-image: linear-gradient(rgba(15, 51, 71, 0.8), rgba(15, 51, 71, 0.8));
+}
+
+.navbar{
+    background-image: linear-gradient(rgba(22, 21, 21, 0.8), rgba(17, 16, 16, 0.8));
+}
+
+.carouseldiv{
+    width: 90%;
+    margin-left: 65px;
 }

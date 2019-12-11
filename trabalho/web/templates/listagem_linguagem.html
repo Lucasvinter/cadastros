@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="mb-2"><h3>Listagem de Linguagens</h3></div>
+<div class="mb-4"><h3>Listagem de Linguagens</h3></div>
 <!-- Barras de pesquisa (nome ou ID) -->
 <div class="row mb-3">
 <form action="/buscar_nome_equipe" method="POST" class="col">
@@ -37,7 +37,7 @@
         {% for linha in empregado %}
             <tr>
                 <th>{{ linha['id'] }}</th>
-                <th>{{ linha['nome'] }}</th>
+                <th class="text-warning">{{ linha['nome'] }}</th>
                 <th>{{ linha['descricao'] }}</th>
                 <td>
                 <form action="/excluir_ling" method="POST">

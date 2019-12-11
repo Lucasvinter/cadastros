@@ -9,7 +9,7 @@
     <title>{{nome_template}}</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="/"><img src="{{url_for('static', filename='logo.png')}}" height="50" width="60"></a>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
@@ -44,14 +44,14 @@
     <div class="container text-white rounded col-12 mt-3">
         <div class="col p-4">
     {% block content %}
-            <div class="col-12">
+            <div class="col-12 carouseldiv">
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img src="{{url_for('static', filename='hbsislogo.jpg')}}" class="d-block w-100" height="480" width="300">
                         </div>
                         <div class="carousel-item">
-                            <img src="{{url_for('static', filename='padawans.jpg')}}" class="d-block w-100" height="480" width="300">
+                            <img src="{{url_for('static', filename='carousel2.png')}}" class="d-block w-100" height="480" width="300">
                         </div>
                         <div class="carousel-item">
                             <img src="{{url_for('static', filename='interior.jpg')}}" class="d-block w-100" height="480" width="300">

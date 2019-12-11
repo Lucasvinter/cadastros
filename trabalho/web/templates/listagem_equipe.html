@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="mb-2"><h3>Listagem de Equipes</h3></div>
+<div class="mb-4"><h3>Listagem de Equipes</h3></div>
 <!-- Barras de pesquisa (nome ou ID) -->
 <div class="row mb-3">
 <form action="/buscar_nome_equipe" method="POST" class="col">
@@ -43,10 +43,10 @@
         {% for linha in empregado %}
             <tr>
                 <th>{{ linha['id'] }}</th>
-                <th class="text-success">{{ linha['nome'] }}</th>
+                <th class="text-warning">{{ linha['nome'] }}</th>
                 <th>{{ linha['projeto'] }}</th>
                 <th>{{ linha['linguagem'] }}</th>
-                <th>{{ linha['lider'] }}</th>
+                <th class="text-success">{{ linha['lider'] }}</th>
                 <th>{{ linha['integrante1'] }}</th>
                 <th>{{ linha['integrante2'] }}</th>
                 <th>{{ linha['integrante3'] }}</th>
