@@ -2,13 +2,13 @@ from model.linguagem import Linguagem
 from dao.conexao import Conexao
 
 class LinguagemDao(Conexao):
-     #--- Método para cadastrar um funcionario
+     #--- Método para cadastrar uma linguagem
     def cadastrar_ling(self, linguagem:Linguagem):
         self.cursor.execute("INSERT INTO linguagem VALUES (DEFAULT, '{}', '{}')".format(linguagem.get_nome(), linguagem.get_descricao()))
         self.conn.commit()
     
     
-    #--- Método para alterar um funcionario --- 
+    #--- Método para alterar uma linguagem --- 
     def alterar_ling(self, linguagem:Linguagem):
         self.cursor.execute("UPDATE linguagem SET nome = '{}', descricao = '{}' WHERE id = {}".format(linguagem.get_nome(), linguagem.get_descricao(), linguagem.get_id()))
         self.conn.commit()

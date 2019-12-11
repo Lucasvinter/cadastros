@@ -2,13 +2,13 @@ from model.equipes import Equipes
 from dao.conexao import Conexao
 
 class EquipesDao(Conexao):
-     #--- Método para cadastrar um funcionario
+     #--- Método para cadastrar uma equipe
     def cadastrar_equipe(self, equipes:Equipes):
         self.cursor.execute("INSERT INTO equipes VALUES (DEFAULT, '{}', '{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(equipes.get_nome(), equipes.get_linguagem(), equipes.get_projeto(), equipes.get_lider(), equipes.get_integrante1(), equipes.get_integrante2(), equipes.get_integrante3(), equipes.get_integrante4()))
         self.conn.commit()
     
     
-    #--- Método para alterar um funcionario --- 
+    #--- Método para alterar uma equipe --- 
     def alterar_equipe(self, equipes:Equipes):
         self.cursor.execute("UPDATE equipes SET nome = '{}', linguagem = '{}', projeto = '{}', lider = '{}', integrante1 = '{}', integrante2 = '{}', integrante3 = '{}', integrante4 = '{}' WHERE id = {}".format(equipes.get_nome(), equipes.get_linguagem(), equipes.get_projeto(), equipes.get_lider(), equipes.get_integrante1(), equipes.get_integrante2(), equipes.get_integrante3(), equipes.get_integrante4(), equipes.get_id()))
         self.conn.commit()
@@ -41,7 +41,7 @@ class EquipesDao(Conexao):
         return lista
     
     
-    #--- Método para filtrar funcionario por 'nome' na lista de equipes cadastradas
+    #--- Método para filtrar equipe por 'nome' na lista de equipes cadastradas
     def filtro_nome_equipe(self, nome):
         lista = []
         self.cursor.execute("SELECT * FROM equipes WHERE nome = '{}'".format(nome))
