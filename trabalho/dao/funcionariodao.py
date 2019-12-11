@@ -1,8 +1,6 @@
 from model.funcionario import Funcionario
 from dao.conexao import Conexao
 
-
-
 class FuncionarioDao(Conexao):
     #--- Método para cadastrar um funcionario
     def cadastrar_func(self, funcionario:Funcionario):
@@ -29,7 +27,7 @@ class FuncionarioDao(Conexao):
     #--- Metodo para excluir uma linha basenado-se no id recebido por parâmetro
     def deletar_func(self, id):
         self.cursor.execute("DELETE FROM funcionarios WHERE id = {}".format(id))
-    
+        
     
     #--- Metodo para filtrar uma funcionarios pelo 'Id' na lista de funcionarios cadastradas
     def filtro_id_func(self, id):
@@ -43,7 +41,7 @@ class FuncionarioDao(Conexao):
     
     
     #--- Método para filtrar funcionario por 'nome' na lista de funcionarios cadastradas
-    def filtro_nome_func(self, nome:str):
+    def filtro_nome_func(self, nome):
         lista = []
         self.cursor.execute("SELECT * FROM funcionarios WHERE nome = '{}'".format(nome))
         self.conn.commit()

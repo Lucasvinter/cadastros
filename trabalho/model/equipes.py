@@ -1,5 +1,6 @@
 class Equipes:
     def __init__(self, nome, linguagem, projeto, lider, integrante1, integrante2, integrante3, integrante4, id=None):
+        self.id = id
         self.nome = nome
         self.linguagem = linguagem
         self.projeto = projeto
@@ -10,6 +11,9 @@ class Equipes:
         self.integrante4 = integrante4
         
 
+    def get_id(self):
+        return self.id
+    
     def get_nome(self):
         return self.nome    
         
@@ -37,5 +41,6 @@ class Equipes:
     def get_integrante3(self):
         return self.integrante3
 
+        
     def get_integrante4(self):
         return self.integrante4

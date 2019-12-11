@@ -1,9 +1,6 @@
 import MySQLdb
 
-
-
 class Conexao:
-
     def __init__(self):
         self.conn = MySQLdb.connect(
             host = 'mysql.topskills.study',
