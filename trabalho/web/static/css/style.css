@@ -1,0 +1,6 @@
+body {
+    background: transparent url('../background.jpg') no-repeat;
+}
+.container{
+    background-image: linear-gradient(to bottom, rgba(19, 83, 112, 0.6), rgba(3, 67, 97, 0.6));
+}
