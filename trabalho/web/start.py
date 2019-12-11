@@ -1,7 +1,5 @@
 import sys
-
-sys.path.append('C:/Users/vinte/OneDrive/Documentos/trabalhospython/cadastros/trabalho/')
-
+sys.path.append('C:/Users/55479/Desktop/TrabalhoPronto/cadastros/trabalho/')
 from flask import Flask, render_template, redirect, request, url_for
 from dao.conexao import Conexao
 from dao.funcionariodao import FuncionarioDao
@@ -32,7 +30,7 @@ def listagem_func():
 @app.route('/salvar_func', methods=['POST'])
 def salvar_func():
     nome = request.form['nome']
-    sobrenome = request.form['sobrenome']
+    sobre_nome = request.form['sobrenome']
     cpf = request.form['cpf']
     data_nascimento = request.form['data_nascimento']
     sexo = request.form['sexo']
@@ -40,14 +38,14 @@ def salvar_func():
     salario = request.form['salario']
     carga_horaria = request.form['carga_horaria']
     cadastra = FuncionarioDao()
-    cadastra.cadastrar_func(Funcionario(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria))
+    cadastra.cadastrar_func(Funcionario(nome, sobre_nome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria))
     return redirect('/listagem_func')
 
 
 @app.route('/update_func', methods=['POST'])
 def update_func():
     nome = request.form['nome']
-    sobrenome = request.form['sobrenome']
+    sobre_nome = request.form['sobrenome']
     cpf = request.form['cpf']
     data_nascimento = request.form['data_nascimento']
     sexo = request.form['sexo']
@@ -56,25 +54,26 @@ def update_func():
     carga_horaria = request.form['carga_horaria']
     id = int(request.form['id'])
     altera = FuncionarioDao()
-    altera.alterar_func(Funcionario(nome, sobrenome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id))
+    altera.alterar_func(Funcionario(nome, sobre_nome, cpf, data_nascimento, sexo, cargo, salario, carga_horaria, id))
     return redirect('/listagem_func')
 
 @app.route('/excluir_func', methods=['POST'])
 def excluir_func():
     id = request.form['excluir']
     deleta = FuncionarioDao()
-    deleta.deletar_func(id)
-    return redirect('/listagem_func')    
+    deleta.deletar_func(id) 
+    return redirect('/listagem_func')   
 
 @app.route('/editar_func', methods=['POST'])
 def editar_func():  
-    id = request.form['editar']
+    id = int(request.form['editar'])
     edita = FuncionarioDao()
-    return render_template('editar_funcionario.html', nome = nome_template, empregado = edita.editar_func(id))
+    editar = edita.editar_func(id)
+    return render_template('editar_funcionario.html', nome = nome_template, empregado = editar)
 
 @app.route('/buscar_id_func', methods=['POST'])
 def buscar_id_func():
-    id = request.form['buscaID']
+    id = int(request.form['buscaID'])
     buscaid = FuncionarioDao()
     if id != '':
         buscaid.filtro_id_func(id)
@@ -116,14 +115,14 @@ def salvar_equipe():
     integrante3 = request.form['integrante3']
     integrante4 = request.form['integrante4']
     cadastra = EquipesDao()
-    cadastra.cadastrar_equipe(Equipes(nome, lingua, lider, projeto, integrante1, integrante2, integrante3, integrante4))
+    cadastra.cadastrar_equipe(Equipes(nome, lingua, projeto, lider, integrante1, integrante2, integrante3, integrante4))
     return redirect('/listagem_equipe')
 
 
 @app.route('/update_equipe', methods=['POST'])
 def update_equipe():
     nome = request.form['nome']
-    linguagem = request.form['linguagem']
+    lingua = request.form['linguagem']
     projeto = request.form['projeto']
     lider = request.form['lider']
     integrante1 = request.form['integrante1']
@@ -132,7 +131,7 @@ def update_equipe():
     integrante4 = request.form['integrante4']
     id = int(request.form['id'])
     altera = EquipesDao()
-    altera.alterar_equipe(Equipes(nome, projeto, linguagem, lider, integrante1, integrante2, integrante3, integrante4, id))
+    altera.alterar_equipe(Equipes(nome, lingua, projeto, lider, integrante1, integrante2, integrante3, integrante4, id))
     return redirect('/listagem_equipe')
 
 @app.route('/excluir_equipe', methods=['POST'])
@@ -144,17 +143,17 @@ def excluir_equipe():
 
 @app.route('/editar_equipe', methods=['POST'])
 def editar_equipe():
-    
-    id = request.form['editar']
+    id = int(request.form['editar'])
     edita = EquipesDao()
-    return render_template('editar_equipe.html', nome = nome_template, empregado = edita.editar_equipe(id))
+    editar = edita.editar_equipe(id)
+    return render_template('editar_equipe.html', nome = nome_template, empregado = editar)
 
 @app.route('/buscar_id_equipe', methods=['POST'])
 def buscar_id_equipe():
-    id = request.form['buscaID']
+    id = int(request.form['buscaID'])
     buscaid = EquipesDao()
     if id != '':
-        buscaid.filtro_id_ling(id)
+        buscaid.filtro_id_equipe(id)
         return render_template('listagem_equipe.html', nome = nome_template, empregado = buscaid.filtro_id_equipe(id))
     else:
         buscaid.listar_equipe()
@@ -194,10 +193,10 @@ def salvar_ling():
 @app.route('/update_ling', methods=['POST'])
 def update_ling():
     nome_ling = request.form['nome']
-    descricao = request.form['descricao']
+    desc = request.form['descricao']
     id = int(request.form['id'])
     altera = LinguagemDao()
-    altera.alterar_ling(Linguagem(nome_ling, descricao, id))
+    altera.alterar_ling(Linguagem(nome_ling, desc, id))
     return redirect('/listagem_ling')
 
 @app.route('/excluir_ling', methods=['POST'])
@@ -209,13 +208,14 @@ def excluir_ling():
 
 @app.route('/editar_ling', methods=['POST'])
 def editar_ling():
-    id = request.form['editar']
+    id = int(request.form['editar'])
     edita = LinguagemDao()
-    return render_template('editar_linguagem.html', nome = nome_template, empregado = edita.editar_ling(id))
+    editar = edita.editar_ling(id)
+    return render_template('editar_linguagem.html', nome = nome_template, empregado = editar)
 
 @app.route('/buscar_id_ling', methods=['POST'])
 def buscar_id_ling():
-    id = request.form['buscaID']
+    id = int(request.form['buscaID'])
     buscaid = LinguagemDao()
     if id != '':
         buscaid.filtro_id_ling(id)

@@ -1,6 +1,6 @@
 class Linguagem:
-
     def __init__(self, nome, descricao, id=None):
+        self.id = id
         self.nome = nome
         self.descricao = descricao
 
@@ -10,4 +10,7 @@ class Linguagem:
 
 
     def get_descricao(self):
-        return self.descricao        
+        return self.descricao
+
+    def get_id(self):
+        return self.id   

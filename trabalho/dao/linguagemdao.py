@@ -1,10 +1,7 @@
+from model.linguagem import Linguagem
 from dao.conexao import Conexao
 
-from model.linguagem import Linguagem
-
-
 class LinguagemDao(Conexao):
-
      #--- Método para cadastrar um funcionario
     def cadastrar_ling(self, linguagem:Linguagem):
         self.cursor.execute("INSERT INTO linguagem VALUES (DEFAULT, '{}', '{}')".format(linguagem.get_nome(), linguagem.get_descricao()))
@@ -39,22 +36,22 @@ class LinguagemDao(Conexao):
         self.cursor.execute("SELECT * FROM linguagem WHERE id = {}".format(id))
         self.conn.commit()
         for linha in self.cursor.fetchall():
-            equip = equip = {'id': linha[0], 'nome': linha[1], 'descricao': linha[2]}
+            equip = {'id': linha[0], 'nome': linha[1], 'descricao': linha[2]}
             lista.append(equip)
         return lista
     
     
     #--- Método para filtrar funcionario por 'nome' na lista de linguagem cadastradas
-    def filtro_nome_ling(self, nome:str):
+    def filtro_nome_ling(self, nome):
         lista = []
         self.cursor.execute("SELECT * FROM linguagem WHERE nome = '{}'".format(nome))
         self.conn.commit()
         for linha in self.cursor.fetchall():
-            equip = equip = {'id': linha[0], 'nome': linha[1], 'descricao': linha[2]}
+            equip = {'id': linha[0], 'nome': linha[1], 'descricao': linha[2]}
             lista.append(equip)
         return lista
 
-    def editar_ling(self,id):
+    def editar_ling(self, id):
         lista = []    
         self.cursor.execute("SELECT * FROM linguagem WHERE id = {}".format(id))
         for linha in self.cursor.fetchall():

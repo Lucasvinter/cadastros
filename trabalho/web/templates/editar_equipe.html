@@ -1,12 +1,12 @@
 {% extends 'layout.html' %}
 {% block content %}
-<div class="mb-2"><h3>Cadastro de Equipes</h3></div>
+<div class="mb-2"><h3>Editar Equipes</h3></div>
 <form action="/update_equipe" method="POST">
     {% for linha in empregado %}
         <div class="row mb-3">
             <div class="col">
                 <label class="text-light" for="id">ID:</label>
-                <input type="text" id="id" class="form-control" value="{{ linha['id'] }}" name="id" value="{{ linha['id'] }}" disabled placeholder="ID gerado automaticamente pelo sistema">
+                <input type="text" id="id" class="form-control" value="{{ linha['id'] }}" disabled placeholder="ID gerado automaticamente pelo sistema">
             </div>
         </div>
         <div class="row mb-3">
